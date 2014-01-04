@@ -1,4 +1,6 @@
-Connect4
-========
+#Connect4
+#========
 
-Use Monte Carlo to simulate AI for the computer player
+#Use Monte Carlo to simulate AI for the computer player
+#========
+
