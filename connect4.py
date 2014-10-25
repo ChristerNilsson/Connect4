@@ -2,7 +2,7 @@ import random
 import copy
 
 EMPTY = '.'
-N = 1000  # number of simulations
+N = 2000  # number of simulations
 
 # main() is the game loop
 def main():
@@ -83,7 +83,7 @@ def monte_carlo(b):
 
 # returns column with best score
 def best_option(d):
-    wins = 0
+    wins = -N-N
     col = 1
     for key in d:
         if d[key] > wins:
@@ -113,18 +113,18 @@ def column_sim(grid, col):
 
 def sim_move(b, s):
     while True:
-        column = random.randint(1, 7)
-        if not column_full(b, column):
-            placement(b, column, s)
+        col = random.randint(1, 7)
+        if not column_full(b, col):
+            placement(b, col, s)
             break
 
 # checks if there are 4 symbols in a row in the 4 directions
 def winner(b, s):
-    return check(1,6,1,4,b,s,0,1) or check(1,3,1,7,b,s,1,0) or check(1,3,1,4,b,s,1,1) or check(1,3,4,7,b,s,1,-1)
+    return check(1,6,1,4,b,s,0,1) or check(1,3,1,7,b,s,1,0) or check(1,3,1,4,b,s,1,1) or check(4,6,1,4,b,s,-1,1)
 
 def check(r1,r2,c1,c2,b,s,dr,dc):
-    for r in range(r1,r2):
-        for c in range(c1,c2):
+    for r in range(r1,r2+1):
+        for c in range(c1,c2+1):
             if b[r][c] == s and b[r+dr][c+dc] == s and b[r+2*dr][c+2*dc] == s and b[r+3*dr][c+3*dc] == s:
                 return True
     return False
